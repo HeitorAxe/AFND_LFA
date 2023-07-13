@@ -1,5 +1,6 @@
 import re
 import itertools
+import tabulate
 #checar como deve ficar o exemplo q o vini mandou
 
 class STATE:
@@ -96,42 +97,37 @@ class AFND:
                         self.symbols.append(x[i])
 
     def printAttributes(self):
-            print("States:")
-            print(self.states)
-            print("Symbols")
-            print(self.symbols)
-
-            print("nextStates")
-            for state in self.table:
-                if state.final:
-                    print("*"+state.index+":")
-                else:
-                    print(state.index+":")
-                state.printStates()
+            """ print("States:")
+                print(self.states)
+                print("Symbols")
+                print(self.symbols)
+                table = list()
+                print("nextStates")
+                for state in self.table:
+                    if state.final:
+                        print("*"+state.index+":")
+                    else:
+                        print(state.index+":")
+                    state.printStates() 
+            """
             print("TABLE")
-            print("  ",*self.symbols, sep="|")
+            table = list()
+            table.append(["State", *self.symbols])
             for i in range(len(self.table)):
+                aux = list()
                 if self.table[i].final:
-                    print("*"+self.table[i].index, end="")
+                    aux.append("*"+self.table[i].index)
                 else:
-                    print(" "+self.table[i].index, end="")
+                    aux.append(self.table[i].index)
 
                 for j in range(len(self.symbols)):
                     found = False
                     for k in self.table[i].nextStates:
                         if k[0] == self.symbols[j]:
-                            print("|", end="")
-                            print(*k[1:], end="")
+                            aux.append(k[1:])
                             found = True
                     if not found:
-                        print("|", end="")
-                        print(" ", end="")
-                print()
-            
-                        
-    def removeEpsilon(self):
-        for state in self.table:
-            #if the state is final, we need to start by removing epslon 
-            #and making a new state to be the final one
-            if state.final:
-                newStateIndex = int(repr(STATE.id_iter)[6:-1])
+                        aux.append("-")
+                table.append(aux)
+        
+            print(tabulate.tabulate(table, headers="firstrow", tablefmt="fancy_outline"))

@@ -1,4 +1,4 @@
 from afnd import *
 
-automato = AFND("in.txt")
+automato = AFND("entradas/in4")
 automato.printAttributes()
