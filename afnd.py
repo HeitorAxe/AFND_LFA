@@ -1,7 +1,8 @@
 import re
 import itertools
 import tabulate
-#checar como deve ficar o exemplo q o vini mandou
+#parece q ta tudo em ordem
+#afnd funcionando
 
 class STATE:
     id_iter = itertools.count()
@@ -26,7 +27,7 @@ class STATE:
         else:
             self.nextStates.append([symbol, nextState])
     def setFinal(self, bool):
-        self.final = True
+        self.final = bool
 
     def printStates(self):
         for i in self.nextStates:
@@ -89,12 +90,29 @@ class AFND:
                                 newState.addNextState(symbol, str(newFinalStateIndex))
 
                 
-                    
+            #ADICIONANDO AS REGRAS DE ACORDO COM OS TOKENS
+            #Pressupõe que os estados da GR já foram cirados 
+            #Mas se n tiver GR no input funciona de boas
             else:
                 self.tokens.append(x)
                 for i in range(len(x)-1):
+                    nextStateIndex = int(repr(STATE.id_iter)[6:-1])
                     if x[i] not in self.symbols:
                         self.symbols.append(x[i])
+
+                    for j in self.table:
+                        if i == 0 and len(self.table)!=0:
+                            if j.id == 0:
+                                j.addNextState(x[i], nextStateIndex)
+                        else:
+                            if j.id == nextStateIndex-1:
+                                j.addNextState(x[i], nextStateIndex)
+                                j.setFinal(False)
+
+                        
+                    nextState = STATE(str(nextStateIndex))
+                    nextState.setFinal(True)
+                    self.table.append(nextState)
 
     def printAttributes(self):
             """ print("States:")
@@ -130,4 +148,4 @@ class AFND:
                         aux.append("-")
                 table.append(aux)
         
-            print(tabulate.tabulate(table, headers="firstrow", tablefmt="fancy_outline"))
+            print(tabulate.tabulate(table, headers="firstrow", tablefmt="heavy_grid"))
