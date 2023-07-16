@@ -26,6 +26,12 @@ class STATE:
             self.nextStates.append([symbol, nextState])
         else:
             self.nextStates.append([symbol, nextState])
+
+    def addNextStateArray(self, arr):
+        for i in arr:
+            for j in range(1, len(i)):
+                self.addNextState(i[0], i[j])
+                
     def setFinal(self, bool):
         self.final = bool
 
@@ -42,7 +48,6 @@ class AFND:
         self.states = list()
         #list of States
         self.table = list()
-        self.quantity_state = 0
         self.__getDataFromFile(path)
 
     def __getDataFromFile(self, path):
@@ -96,7 +101,7 @@ class AFND:
             else:
                 self.tokens.append(x)
                 for i in range(len(x)-1):
-                    nextStateIndex = int(repr(STATE.id_iter)[6:-1])
+                    nextStateIndex = repr(STATE.id_iter)[6:-1]
                     if x[i] not in self.symbols:
                         self.symbols.append(x[i])
 
@@ -105,7 +110,7 @@ class AFND:
                             if j.id == 0:
                                 j.addNextState(x[i], nextStateIndex)
                         else:
-                            if j.id == nextStateIndex-1:
+                            if j.id == int(nextStateIndex)-1:
                                 j.addNextState(x[i], nextStateIndex)
                                 j.setFinal(False)
 
@@ -148,4 +153,11 @@ class AFND:
                         aux.append("-")
                 table.append(aux)
         
-            print(tabulate.tabulate(table, headers="firstrow", tablefmt="heavy_grid"))
+            print(tabulate.tabulate(table, headers="firstrow", tablefmt="rounded_grid"))
+
+    def findState(self, index):
+        for i in self.table:
+            if i.index == index:
+                return i
+        return False
+    
