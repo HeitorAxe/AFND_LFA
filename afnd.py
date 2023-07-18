@@ -13,25 +13,20 @@ class STATE:
         self.nextStates = list()
         self.final = False
     def addNextState(self, symbol, nextState):
-        for i in self.nextStates:
-            if i[0] == symbol:
-                i.append(nextState)
+        for i in range(len(self.nextStates)):
+            if self.nextStates[i][0] == symbol:
+                self.nextStates[i].append(nextState)
                 #wont be using this
-                if nextState == "Fi":
-                    self.final = True
                 return
         #wont be using this either
-        if nextState == "Fi":
-            self.final = True
-            self.nextStates.append([symbol, nextState])
-        else:
-            self.nextStates.append([symbol, nextState])
+
+        self.nextStates.append([symbol, nextState])
 
     def addNextStateArray(self, arr):
         for i in arr:
             for j in range(1, len(i)):
                 self.addNextState(i[0], i[j])
-                
+
     def setFinal(self, bool):
         self.final = bool
 
@@ -53,6 +48,7 @@ class AFND:
     def __getDataFromFile(self, path):
         f = open(path, "r")
         for x in f:
+            #print(x)
             #in case it is a rule from gr
             if x[0] == "<":
                 self.gr.append(x)
@@ -105,34 +101,40 @@ class AFND:
                     if x[i] not in self.symbols:
                         self.symbols.append(x[i])
 
-                    for j in self.table:
+                    for j in range(len(self.table)):
                         if i == 0 and len(self.table)!=0:
-                            if j.id == 0:
-                                j.addNextState(x[i], nextStateIndex)
+                            if self.table[j].index == "S" or self.table[j].id == 0:
+                                self.table[j].addNextState(x[i], nextStateIndex)
                         else:
-                            if j.id == int(nextStateIndex)-1:
-                                j.addNextState(x[i], nextStateIndex)
-                                j.setFinal(False)
+                            if self.table[j].id == int(nextStateIndex)-1:
+                                self.table[j].addNextState(x[i], nextStateIndex)
+                                self.table[j].setFinal(False)
+
+                        #print("TOKEN")
+                        #print(self.table[j].index, ":")
+                        #print(self.table[j].nextStates)
+                                
 
                         
-                    nextState = STATE(str(nextStateIndex))
+                    nextState = STATE(nextStateIndex)
                     nextState.setFinal(True)
                     self.table.append(nextState)
+        f.close()
 
     def printAttributes(self):
             """ print("States:")
-                print(self.states)
-                print("Symbols")
-                print(self.symbols)
-                table = list()
-                print("nextStates")
-                for state in self.table:
-                    if state.final:
-                        print("*"+state.index+":")
-                    else:
-                        print(state.index+":")
-                    state.printStates() 
-            """
+            print(self.states)
+            print("Symbols")
+            print(self.symbols)
+            table = list()
+            print("nextStates")
+            for state in self.table:
+                if state.final:
+                    print("*"+state.index+":")
+                else:
+                    print(state.index+":")
+                state.printStates()  """
+           
             print("TABLE")
             table = list()
             table.append(["State", *self.symbols])
@@ -150,10 +152,12 @@ class AFND:
                             aux.append(k[1:])
                             found = True
                     if not found:
-                        aux.append("-")
+                        aux.append("")
                 table.append(aux)
         
-            print(tabulate.tabulate(table, headers="firstrow", tablefmt="rounded_grid"))
+            print(tabulate.tabulate(table, headers="firstrow", tablefmt="heavy_grid"))
+            """ for i in self.table:
+                print(i.index+": ", i.nextStates) """
 
     def findState(self, index):
         for i in self.table:
@@ -161,3 +165,28 @@ class AFND:
                 return i
         return False
     
+    
+    def printWithErrorState(self):
+            table = list()
+            table.append(["State", *self.symbols])
+            temp = ["-1" for i in range(len(self.symbols))]
+            temp.insert(0, "-1")
+            table.append(temp)
+            for i in range(len(self.table)):
+                aux = list()
+                if self.table[i].final:
+                    aux.append("*"+self.table[i].index)
+                else:
+                    aux.append(self.table[i].index)
+
+                for j in range(len(self.symbols)):
+                    found = False
+                    for k in self.table[i].nextStates:
+                        if k[0] == self.symbols[j]:
+                            aux.append(k[1:])
+                            found = True
+                    if not found:
+                        aux.append("-1")
+                table.append(aux)
+        
+            print(tabulate.tabulate(table, headers="firstrow", tablefmt="heavy_grid"))

@@ -1,7 +1,10 @@
 from afnd import *
 from afd import *
+#OBS <S> deve ser sempre o estado inicial
 
-automato = AFD("entradas/in2")
-automato2 = AFND("entradas/in2")
-automato2.printAttributes()
+#a = AFND("entradas/in3")
+automato = AFD("entradas/in")
+
+#a.printAttributes()
+#automato.printWithErrorState()
 automato.printAttributes()
