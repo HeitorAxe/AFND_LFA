@@ -122,19 +122,6 @@ class AFND:
         f.close()
 
     def printAttributes(self):
-            """ print("States:")
-            print(self.states)
-            print("Symbols")
-            print(self.symbols)
-            table = list()
-            print("nextStates")
-            for state in self.table:
-                if state.final:
-                    print("*"+state.index+":")
-                else:
-                    print(state.index+":")
-                state.printStates()  """
-           
             print("TABLE")
             table = list()
             table.append(["State", *self.symbols])

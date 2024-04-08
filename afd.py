@@ -133,24 +133,6 @@ class AFD(AFND):
                 self.deleteState(state.index)
 
 
-    #to do
-    """ def minimize(self):
-        listSets = list()
-        finalSet = set()
-        nonFinalSet = set()
-        #start getting 0 equivalence
-        for state in self.table:
-            if state.final:
-                finalSet.add(state.index)
-            else:
-                nonFinalSet.add(state.index)
-    
-        listSets.append(nonFinalSet)
-        listSets.append(finalSet)
-
-        #checar os conjuntos
-        for a in self.symbols: """
-
 
 
                 

@@ -6,5 +6,5 @@ from afd import *
 automato = AFD("entradas/in")
 
 #a.printAttributes()
-#automato.printWithErrorState()
-automato.printAttributes()
+automato.printWithErrorState()
+#automato.printAttributes()
