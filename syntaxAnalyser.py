@@ -9,9 +9,11 @@ def processToken(token, afd):
         if token[i] not in afd.symbols:
             return False
         currentState = afd.goesTo(currentState, token[i])
+        if currentState == False:
+            return False
         #print("nextState: " + currentState)
         #print(afd.findState(currentState).final)
-        if currentState!=False and i == len(token)-1 and afd.findState(currentState).final == True: 
+        if i == len(token)-1 and afd.findState(currentState).final == True: 
             return True
     return False
 
@@ -19,5 +21,6 @@ print(processToken("se", automato))
 print(processToken("senao", automato))
 print(processToken("entao", automato))
 print(processToken("si", automato))
+print(processToken("aeiosu", automato))
 #automato.printAttributes()
 
