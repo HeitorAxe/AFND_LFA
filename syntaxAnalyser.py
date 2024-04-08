@@ -1,5 +1,9 @@
 from afd import *
-automato = AFD("entradas/in")
+automato = AFD("entradas/in6")
+tokens = [
+    "aabb",
+    "aababaa"
+]
 
 def processToken(token, afd):
     currentState = "S"
@@ -17,10 +21,8 @@ def processToken(token, afd):
             return True
     return False
 
-print(processToken("se", automato))
-print(processToken("senao", automato))
-print(processToken("entao", automato))
-print(processToken("si", automato))
-print(processToken("aeiosu", automato))
-#automato.printAttributes()
-
+def processTokens(tokens, afd):
+    for token in tokens:
+        print(processToken(token, afd))
+automato.printAttributes()
+processTokens(tokens, automato)
