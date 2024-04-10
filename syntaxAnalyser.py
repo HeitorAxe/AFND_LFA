@@ -1,9 +1,6 @@
 from afd import *
-automato = AFD("entradas/in6")
-tokens = [
-    "aabb",
-    "aababaa"
-]
+automato = AFD("entradas/in")
+
 
 def processToken(token, afd):
     currentState = "S"
@@ -24,5 +21,16 @@ def processToken(token, afd):
 def processTokens(tokens, afd):
     for token in tokens:
         print(processToken(token, afd))
+
+
+def getTokensFromFile(path) -> list:
+    tokens = []
+    with open(path, 'r') as file:
+        for line in file:
+            tokens.append(line.removesuffix('\n'))
+    print(tokens)
+    return tokens 
+
+tokens = getTokensFromFile("entradas/tokens/t1.txt")
 automato.printAttributes()
 processTokens(tokens, automato)
