@@ -44,7 +44,6 @@ class AFD(AFND):
                         for j in aux.nextStates:
                             if j not in newNextStates:
                                 newNextStates.append(j)
-                        #print(newNextStates)
                         if aux.final:
                             final = True
                     newStateIndex = newStateIndex.strip()
@@ -67,10 +66,6 @@ class AFD(AFND):
 
             self.table.append(currentNewState)
 
-            #debug
-            #sleep(1)
-            #self.printAttributes()
-
     #deve ser usado apenas depois da determinzação
     #retorna o primeiro proximo estado de um estado
     #ao receber um simbolo
@@ -81,7 +76,6 @@ class AFD(AFND):
                 return nextState[1]
         return False
     
-    #deletes a state and all the paths leading to it
     def deleteState(self, stateIndex):
         for state in self.table:
             if state.index == stateIndex:
@@ -95,16 +89,15 @@ class AFD(AFND):
 
     #determina se um estado chega ao fim
     def isNonTerminal(self, start):
-        visited = [] # List for visited nodes.
-        queue = []     #Initialize a queue
+        visited = []
+        queue = []
         visited.append(start)
         queue.append(start)
         final = False
         #print("STATE", start)
 
-        while queue:          # Creating loop to visit each node
+        while queue:        
             m = queue.pop(0) 
-            #print (m, end = " ") 
             if self.findState(m).final:
                 final = True
             for nextState in self.findState(m).nextStates:
@@ -112,11 +105,6 @@ class AFD(AFND):
                     if neighbour not in visited:
                         visited.append(neighbour)
                         queue.append(neighbour)
-
-            #for neighbour in graph[m]:
-            #    if neighbour not in visited:
-            #        visited.append(neighbour)
-            #        queue.append(neighbour)
 
         return final
     
@@ -126,10 +114,8 @@ class AFD(AFND):
         for state in self.table:
             finalizes = self.isNonTerminal(state.index)
             if finalizes:
-                #print(state.index,"Is final")
                 continue
             else:
-                #print(state.index,"Is Not final")
                 self.deleteState(state.index)
 
 

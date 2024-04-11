@@ -36,12 +36,12 @@ def printTape(tape):
 
 def processTokens(afd, path):
     tape = []
-    tokens = read_tokens_from_file(path)
+    tokens = read_tokens_and_get_line(path)
     for token, line in tokens:
         label = processToken(token, afd)
         if not label:
             label = "REJECTED"
-        fita.append({"line": line, "identifier": token, "label": label})
+        tape.append({"line": line, "identifier": token, "label": label})
     printTape(tape)
     
     
