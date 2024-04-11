@@ -109,12 +109,6 @@ class AFND:
                             if self.table[j].id == int(nextStateIndex)-1:
                                 self.table[j].addNextState(x[i], nextStateIndex)
                                 self.table[j].setFinal(False)
-
-                        #print("TOKEN")
-                        #print(self.table[j].index, ":")
-                        #print(self.table[j].nextStates)
-                                
-
                         
                     nextState = STATE(nextStateIndex)
                     nextState.setFinal(True)
