@@ -1,5 +1,5 @@
 from afd import *
-automato = AFD("entradas/in6")
+automato = AFD("entradas/in")
 
 
 def processToken(token, afd):
@@ -30,19 +30,22 @@ def read_tokens_and_get_line(file_name):
     # returns tuples: ('token', 1)
     return tokens_with_lines 
 
-def printTape(tape):
-    for t in tape:
+def printSymbolTable(symbolTable):
+    for t in symbolTable:
         print("\nLINE: ",t["line"]," IDENTIFIER: "+ t["identifier"]+" LABEL: ",t["label"])
 
 def processTokens(afd, path):
+    symbolTable = []
     tape = []
     tokens = read_tokens_and_get_line(path)
     for token, line in tokens:
         label = processToken(token, afd)
         if not label:
             label = "REJECTED"
-        tape.append({"line": line, "identifier": token, "label": label})
-    printTape(tape)
+        symbolTable.append({"line": line, "identifier": token, "label": label})
+        tape.append(label)
+    printSymbolTable(symbolTable)
+    print("\n-----------------------------------------\nOUTPUT STREAM: ", tape)
     
     
 PATH = "entradas/tokens/t1.txt"
