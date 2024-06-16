@@ -1,3 +1,11 @@
-se aaeeoio entao uuaeo
-senao auuuuuuuuu
-se banana entao erro
+if
+elif
+then
+true
+false
+let
+;
+=
+{
+}
+minhavariavel

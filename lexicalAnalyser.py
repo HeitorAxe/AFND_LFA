@@ -1,8 +1,10 @@
 from afd import *
+
 automato = AFD("entradas/in")
 
 
 def processToken(token, afd):
+
     currentState = "S"
     #print("\nCurrent token: " + token)
     for i in range(len(token)):

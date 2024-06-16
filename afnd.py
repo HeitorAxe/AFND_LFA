@@ -59,7 +59,8 @@ class AFND:
                 rules=re.split('\|', x)
                 
                 #For tracking states and next states
-                newState = STATE(x[1])
+                matches = re.findall(r'<(.*?)>', x);
+                newState = STATE(matches[0])
                 #resulta em erro se der append agora e dps modificar o objeto?
                 self.table.append(newState)
                 #get states and symbols from the rule

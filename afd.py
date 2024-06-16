@@ -17,6 +17,7 @@ class AFD(AFND):
         q = queue.Queue()
         #adicionando estado inicial
         start = afnd.findState("S")
+        #print(start.nextStates)
         q.put(start)
         while(not q.empty()):
             state=q.get()
