@@ -1,9 +1,8 @@
-if
-true
-false
-let
-;
-=
-{
+if true {
+    let HEITOR = true ;
 }
-MINHAVARIAVEL
+
+let NEWGUY2 = GUY ;
+let LUCAS = HEITOR ;
+let ALEX = true ;
+let RIAN = true ;

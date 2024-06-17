@@ -96,7 +96,7 @@ class AFND:
             #Pressupõe que os estados da GR já foram cirados 
             #Mas se n tiver GR no input funciona de boas
             else:
-                self.tokens.append(x)
+                self.tokens.append(x.replace('\n', ''))
                 for i in range(len(x)-1):
                     nextStateIndex = repr(STATE.id_iter)[6:-1]
                     if x[i] not in self.symbols:
