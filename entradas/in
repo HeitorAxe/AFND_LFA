@@ -1,8 +1,6 @@
-<S> ::= a<VAR> | e<VAR> | i<VAR> | o<VAR> | u<VAR> | b<VAR> | c<VAR> | d<VAR> | f<VAR> | g<VAR> | h<VAR> | j<VAR> | k<VAR> | l<VAR> | m<VAR> | n<VAR> | p<VAR> | q<VAR> | r<VAR> | s<VAR> | t<VAR> | v<VAR> | w<VAR> | x<VAR> | y<VAR> | z<VAR> | ε
-<VAR> ::= a<VAR> | e<VAR> | i<VAR> | o<VAR> | u<VAR> | b<VAR> | c<VAR> | d<VAR> | f<VAR> | g<VAR> | h<VAR> | j<VAR> | k<VAR> | l<VAR> | m<VAR> | n<VAR> | p<VAR> | q<VAR> | r<VAR> | s<VAR> | t<VAR> | v<VAR> | w<VAR> | x<VAR> | y<VAR> | z<VAR> | 0<VAR> | 1<VAR> | 2<VAR> | 3<VAR> | 4<VAR> | 5<VAR> | 6<VAR> | 7<VAR> | 8<VAR> | 9<VAR> | ε
+<S> ::= A<VAR> | E<VAR> | I<VAR> | O<VAR> | U<VAR> | B<VAR> | C<VAR> | D<VAR> | F<VAR> | G<VAR> | H<VAR> | J<VAR> | K<VAR> | L<VAR> | M<VAR> | N<VAR> | P<VAR> | Q<VAR> | R<VAR> | S<VAR> | T<VAR> | V<VAR> | W<VAR> | X<VAR> | Y<VAR> | Z<VAR> | ε
+<VAR> ::= A<VAR> | E<VAR> | I<VAR> | O<VAR> | U<VAR> | B<VAR> | C<VAR> | D<VAR> | F<VAR> | G<VAR> | H<VAR> | J<VAR> | K<VAR> | L<VAR> | M<VAR> | N<VAR> | P<VAR> | Q<VAR> | R<VAR> | S<VAR> | T<VAR> | V<VAR> | W<VAR> | X<VAR> | Y<VAR> | Z<VAR> | 0<VAR> | 1<VAR> | 2<VAR> | 3<VAR> | 4<VAR> | 5<VAR> | 6<VAR> | 7<VAR> | 8<VAR> | 9<VAR> | ε
 if
-elif
-then
 true
 false
 let

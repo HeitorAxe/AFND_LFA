@@ -1,6 +1,4 @@
 if
-elif
-then
 true
 false
 let
@@ -8,4 +6,4 @@ let
 =
 {
 }
-minhavariavel
+MINHAVARIAVEL
