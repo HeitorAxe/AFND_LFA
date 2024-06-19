@@ -176,5 +176,5 @@ tokens = lexer.processTokens(path)
 parser = Parser(parsing_table_file)
 parser.parse(tokens)
 
-#print(parser.symbol_table)
+print(parser.symbol_table)
 

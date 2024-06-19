@@ -1,8 +1,8 @@
 if true {
-    let HEITOR = true ;
+    let HEITOR = false ;
 }
 
-let NEWGUY2 = GUY ;
-let LUCAS = HEITOR ;
+let NEWGUY = true ;
+let LUCAS = NEWGUY ;
 let ALEX = true ;
 let RIAN = true ;
